@@ -147,6 +147,7 @@ app.get('/print-events', function(request, response){
   });
 
 
+
 //converts 24 hr time to 12 hr for user legibility
 function formatTime(timeIn){
   var tmpArr = timeIn.split(':'), timeOut;
