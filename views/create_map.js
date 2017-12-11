@@ -54,7 +54,7 @@ function loadEvents()
     http.send(null);
 } 
 
-function sendEvents (results) 
+function sendEvents () 
 {
 	var html = "";
 
@@ -76,7 +76,7 @@ function getMyLocation(results) {
 	}
 }
 
-function renderMap(results)
+function renderMap()
 {
 	me = new google.maps.LatLng(myLat, myLng);
 	
@@ -97,6 +97,7 @@ function renderMap(results)
 	});
 
 	placeEvents();
+
 }
 
 function placeEvents()
