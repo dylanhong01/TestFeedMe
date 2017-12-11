@@ -121,7 +121,7 @@ function format_events (all_events)
             for (j = i + 1; j < len; j++) {
                 if (all_events[i] != null) {
                     if (build == all_events[j].location) {
-                        goupings.push(all_events);
+                        groupings.push(all_events);
                         delete all_events[j]
                     }
                 }
