@@ -71,6 +71,7 @@ function placeEvents()
 		if (sendIt.readyState == 4 && sendIt.status == 200)
 		{
 			rawData = sendIt.responseText;
+			format_events(rawData);
 			events = JSON.parse(rawData);
 			for (count = 0; count < events.length; count++)
 			{
@@ -105,6 +106,59 @@ function placeEvents()
 		}
 	}
 }
+
+
+function format_events (all_events)
+{
+    var len = all_events.length;
+    var toprint = "";
+    for (i = 0; i < len; i++) {
+        if (all_events[i] != null) {
+            var groupings = [];
+            groupings.push(all_events[i]);
+            var build = all_events[i].location;
+            delete all_events[i];
+            for (j = i + 1; j < len; j++) {
+                if (all_events[i] != null) {
+                    if (build == all_events[j].location) {
+                        goupings.push(all_events);
+                        delete all_events[j]
+                    }
+                }
+            }
+            toprint += print_grouping(groupings);
+        }
+    }
+ 
+ 
+    getElementById('list_of_events').innerHTML = toprint;
+ 
+}
+ 
+function print_grouping (groupings) {
+    var infoContent = "";
+    for (i in groupings) {
+        var food = events[count].food;
+        var location = events[count].location;  
+        var room = events[count].room;
+        var timeStart = events[count].timeStart;
+        var timeEnd = events[count].timeEnd;
+        var xtrainfo = events[count].extraInfo;
+ 
+        infoContent = '<div id="content"><div id="siteNotice"></div><h1 id="firstHeading" class="firstHeading">'
+                        + location + '</h1></div>';
+        infoContent += '<div id="bodyContent"><p>' + "Food: " + food + '</p>';
+        infoContent += '<p>' + "Room: " + room + '</p>';
+        infoContent += '<p>' + "Start Time: " + timeStart + '</p>';
+        infoContent += '<p>' + "End Time: " + timeEnd + '</p>';
+        infoContent += '<p>' + "Additional Information: " + xtrainfo + '</p></div>'
+    }
+ 
+    //TODO send this
+    return infoContent;
+}
+
+
 
 var building_locations =
 {
