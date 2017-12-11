@@ -122,7 +122,7 @@ var building_locations =
 
 function geolocation_of_building (building) 
 {
-	latLng = building_locations[building];
+	var latLng = building_locations[building];
 	return latLng;
 }
 
