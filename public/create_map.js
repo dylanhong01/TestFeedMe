@@ -16,32 +16,48 @@ var rectangle = new google.maps.Rectangle();
 function init()
 {
 	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-	loadEvents();
 	getMyLocation();
+	//loadEvents();
+
 }
+
+
+function getMyLocation() {
+	if (navigator.geolocation) { // the navigator.geolocation object is supported on your browser
+		navigator.geolocation.getCurrentPosition(function(position) {
+			myLat = position.coords.latitude;
+			myLng = position.coords.longitude;
+			renderMap();
+		});
+	}
+	else {
+		alert("Geolocation is not supported by your web browser.  What a shame!");
+	}
+}
+
 
 function loadEvents() 
 {
 	var http = new XMLHttpRequest();
 	var response_string;
-	var url = "http://localhost:3000/see-events";
+	var url = "http://http://frozen-depths-55905.herokuapp.com/print-events";
 	http.open("GET", url, true);
     //http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
     http.onreadystatechange = function() {
         if(http.readyState == 4 && http.status == 200) {
             response_string = http.responseText;
-            //getMyLocation(response_string);
+            getMyLocation(response_string);
             sendEvents(response_string);
         }
     }
     http.send(null);
 } 
 
-function sendEvents (results) 
+function sendEvents () 
 {
 	var html = "";
-	console.log(results);
+
 
 	document.getElementById("list_of_event").innerHTML = "<p>Hey i made it here</p>";
 }
@@ -52,7 +68,7 @@ function getMyLocation() {
 		navigator.geolocation.getCurrentPosition(function(position) {
 			myLat = position.coords.latitude;
 			myLng = position.coords.longitude;
-			renderMap();
+			renderMap(results);
 		});
 	}
 	else {
@@ -79,8 +95,58 @@ function renderMap()
 		infowindow.setContent(marker.title);
 		infowindow.open(map, marker);
 	});
+
+	placeEvents();
+
 }
 
+function placeEvents()
+{
+	var sendIt = new XMLHttpRequest();
+	var url = "https://frozen-depths-55905.herokuapp.com/";
+	sendIt.open("POST", url, true);
+
+	sendIt.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+	sendIt.send();
+	sendIt.onreadystatechange = function()
+	{
+		if (sendIt.readyState == 4 && sendIt.status == 200)
+		{
+			rawData = sendIt.responseText;
+			events = JSON.parse(rawData);
+			for (count = 0; count < events.length; count++)
+			{
+				var food = events[count].food;
+            	var location = events[count].location;
+           	 	var room = events[count].room;
+            	var timeStart = events[count].timeStart;
+            	var timeEnd = events[count].timeEnd;
+            	var xtrainfo = events[count].extraInfo;
+				var infoContent = '<div id="content"><div id="siteNotice"></div><h1 id="firstHeading" class="firstHeading">'
+									+ food + '</h1></div>';
+				infoContent += '<div id="bodyContent"><p>' + "Location: " + location + '</p>';
+				infoContent += '<p>' + "Room: " + room + '</p>';
+				infoContent += '<p>' + "Start Time: " + timeStart + '</p>';
+				infoContent += '<p>' + "End Time: " + timeEnd + '</p>';
+				infoContent += '<p>' + "Additional Information: " + xtrainfo + '</p></div>';
+				var newInfoWindow = new google.maps.InfoWindow ({
+					content:infoContent
+				});
+    			var newMarker = new google.maps.Marker({
+        			position: geolocation_of_building(location),
+        			map: map,
+        			title: events[count].food,
+        			infowindow: newInfoWindow
+  				});
+				google.maps.event.addListener(newMarker, 'click', function() {
+					this.infowindow.open(map, this);
+				});
+  				newMarker.setMap(map);
+			}
+		}
+	}
+}
 
 
 //proof of concept geolocations
@@ -105,4 +171,5 @@ var building_locations =
 function geolocation_of_building (building) 
 {
 	building_locations[building];
+	return latLng;
 }
