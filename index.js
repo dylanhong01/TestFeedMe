@@ -216,6 +216,8 @@ app.post('/print', function(request, response){
 });
 
 
+
+
 //proof of concept geolocations
 // TODO: hard code all academic and res buildings on campus
 //       or at least enough to get the point accross
