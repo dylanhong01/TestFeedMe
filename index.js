@@ -218,6 +218,19 @@ app.get('/', function(request, response) {
 
 });
 
+app.get('/index', function(request, response) {
+  response.render('index');
+})
+app.get('/map', function (request, response) {
+    response.render('map');
+});
+
+app.get('/event', function(request, response) {
+    response.render('event');
+});
+
+
+
 app.post('/', function(request, response){
  db.collection('events', function(er, collection){
     collection.find().toArray(function(err,results){
