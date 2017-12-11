@@ -109,28 +109,7 @@ app.get('/print-events', function(request, response){
   });
 
 
-  app.post('/print-events', function(request, response){
-
-  var now = new Date();
-  var eventList = [];
-  currTime = now.getHours()-5 + ':' + now.getMinutes();
-
-  console.log(currTime);
-
-  db.collection('events', function(er, collection){
-    collection.find().toArray(function(err,results){
-      if (!err) {
-        for (var count = 0; count < results.length; count++){
-
-          if (results[count].timeStart <= currTime && results[count].timeEnd >= currTime){
-            eventList.push(results[count]);
-          }
-          //TODO: Write something that checks for relevant info
-        }
-        response.send(eventList);
-      }
-    });
-  });
+  
 
 
   db.collection('events', function(er, collection){
