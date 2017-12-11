@@ -1,4 +1,5 @@
 // Initialization of mongo
+//This is my boot test
 var express = require('express');
 var cors = require('cors');
 var bodyParser = require('body-parser');
@@ -83,13 +84,29 @@ var eventListAll = [];
 
 //This should print out all the events. There needs to be an if clause that
 //checks to see if the times are relevant
-app.get('/see-events', function(request, response){
+app.get('/print-events', function(request, response){
 
   var now = new Date();
   var eventList = [];
   currTime = now.getHours()-5 + ':' + now.getMinutes();
 
   console.log(currTime);
+
+  db.collection('events', function(er, collection){
+    collection.find().toArray(function(err,results){
+      if (!err) {
+        for (var count = 0; count < results.length; count++){
+
+          if (results[count].timeStart <= currTime && results[count].timeEnd >= currTime){
+            eventList.push(results[count]);
+          }
+          //TODO: Write something that checks for relevant info
+        }
+        response.send(eventList);
+      }
+    });
+  });
+
 
   db.collection('events', function(er, collection){
     collection.find().toArray(function(err,results){
