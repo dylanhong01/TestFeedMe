@@ -42,7 +42,7 @@ function renderMap()
 	// Create a marker
 	marker = new google.maps.Marker({
 		position: me,
-		title: "Here I Am!"
+		title: "Your Location"
 	});
 	marker.setMap(map);
 		
@@ -92,6 +92,7 @@ function placeEvents()
 				});
     			var newMarker = new google.maps.Marker({
         			position: geolocation_of_building(location),
+        			icon: 'FMsmall.png',
         			map: map,
         			title: events[count].food,
         			infowindow: newInfoWindow
