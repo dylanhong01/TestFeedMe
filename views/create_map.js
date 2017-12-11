@@ -80,6 +80,53 @@ function renderMap(results)
 	});
 }
 
+function placeEvents()
+{
+	var sendIt = new XMLHttpRequest();
+	var url = "https://fierce-mesa-12672.herokuapp.com/";
+	sendIt.open("POST", url, true);
+
+	sendIt.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+	sendIt.send();
+	sendIt.onreadystatechange = function()
+	{
+		if (sendIt.readyState == 4 && sendIt.status == 200)
+		{
+			rawData = sendIt.responseText;
+			events = JSON.parse(rawData);
+			for (count = 0; count < events.length; count++)
+			{
+				var food = events[count].food;
+            	var location = events[count].location;
+           	 	var room = events[count].room;
+            	var timeStart = events[count].timeStart;
+            	var timeEnd = events[count].timeEnd;
+            	var xtrainfo = events[count].extraInfo;
+				var infoContent = '<div id="content"><div id="siteNotice"></div><h1 id="firstHeading" class="firstHeading">'
+									+ food + '</h1></div>';
+				infoContent += '<div id="bodyContent"><p>' + "Location: " + location + '</p>';
+				infoContent += '<p>' + "Room: " + room + '</p>';
+				infoContent += '<p>' + "Start Time: " + timeStart + '</p>';
+				infoContent += '<p>' + "End Time: " + timeEnd + '</p>';
+				infoContent += '<p>' + "Additional Information: " + xtrainfo + '</p></div>';
+				var newInfoWindow = new google.maps.InfoWindow ({
+					content:infoContent
+				});
+    			var newMarker = new google.maps.Marker({
+        			position: geolocation_of_building(location),
+        			map: map,
+        			title: events[count].food,
+        			infowindow: newInfoWindow
+  				});
+				google.maps.event.addListener(newMarker, 'click', function() {
+					this.infowindow.open(map, this);
+				});
+  				newMarker.setMap(map);
+			}
+		}
+	}
+}
 
 
 //proof of concept geolocations
