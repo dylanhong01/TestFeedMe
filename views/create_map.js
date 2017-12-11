@@ -52,7 +52,7 @@ function renderMap()
 		infowindow.open(map, marker);
 	});
 
-	//placeEvents();
+	placeEvents();
 
 }
 

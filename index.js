@@ -110,7 +110,7 @@ app.get('/print-events', function(request, response){
 
 
 
-
+/*
 
   db.collection('events', function(er, collection){
     collection.find().toArray(function(err,results){
@@ -119,7 +119,7 @@ app.get('/print-events', function(request, response){
 
           if (results[count].timeStart <= currTime && results[count].timeEnd >= currTime){
             eventList.push(results[count]);
-            /*start here */
+            //start here 
             var food = results[count].food;
             var location = results[count].location;
             var room = results[count].room;
@@ -145,7 +145,7 @@ app.get('/print-events', function(request, response){
       }
     });
   });
-
+*/
 
 
 //converts 24 hr time to 12 hr for user legibility
