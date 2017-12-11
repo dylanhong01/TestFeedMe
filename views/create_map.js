@@ -103,8 +103,8 @@ function renderMap()
 function placeEvents()
 {
 	var sendIt = new XMLHttpRequest();
-	var url = "https://frozen-depths-55905.herokuapp.com/";
-	sendIt.open("POST", url, true);
+	var url = "https://frozen-depths-55905.herokuapp.com/print-events";
+	sendIt.open("GET", url, true);
 
 	sendIt.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 

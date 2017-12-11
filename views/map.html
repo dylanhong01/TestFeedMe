@@ -88,6 +88,26 @@
       <div class="row">
         <div class="col-md-4 mb-4 mb-md-0">
           <div id="list_of_event"></div>
+          <script>
+
+
+          function serverCom() {
+              var request = new XMLHttpRequest();
+              var url = "http://frozen-depths-55905.herokuapp.com/print-events";
+
+              request.open("GET", url, true);
+              request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+              elements = JSON.parse(request.responseText);
+              console.log(elements);
+
+          }
+
+          </script>
+
+
+
+
         </div>
       </div>
     </div>
