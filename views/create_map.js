@@ -78,6 +78,8 @@ function renderMap(results)
 		infowindow.setContent(marker.title);
 		infowindow.open(map, marker);
 	});
+
+	placeEvents();
 }
 
 function placeEvents()
