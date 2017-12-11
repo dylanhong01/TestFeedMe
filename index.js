@@ -212,6 +212,7 @@ app.post('/print', function(request, response){
       }
     });
   });
+});
 
 
 //proof of concept geolocations
