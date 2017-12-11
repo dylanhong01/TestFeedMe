@@ -16,8 +16,25 @@ var rectangle = new google.maps.Rectangle();
 function init()
 {
 	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-	loadEvents()
+	getMyLocation();
+	//loadEvents();
+
 }
+
+
+function getMyLocation() {
+	if (navigator.geolocation) { // the navigator.geolocation object is supported on your browser
+		navigator.geolocation.getCurrentPosition(function(position) {
+			myLat = position.coords.latitude;
+			myLng = position.coords.longitude;
+			renderMap();
+		});
+	}
+	else {
+		alert("Geolocation is not supported by your web browser.  What a shame!");
+	}
+}
+
 
 function loadEvents() 
 {
@@ -85,7 +102,7 @@ function renderMap(results)
 function placeEvents()
 {
 	var sendIt = new XMLHttpRequest();
-	var url = "https://frozen-depths-55905.herokuapp.com/print-events";
+	var url = "https://frozen-depths-55905.herokuapp.com/";
 	sendIt.open("POST", url, true);
 
 	sendIt.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -153,4 +170,5 @@ var building_locations =
 function geolocation_of_building (building) 
 {
 	building_locations[building];
+	return latLng;
 }
