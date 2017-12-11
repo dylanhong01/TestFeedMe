@@ -16,8 +16,7 @@ var rectangle = new google.maps.Rectangle();
 function init()
 {
 	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-	loadEvents();
-	getMyLocation();
+	loadEvents()
 }
 
 function loadEvents() 
@@ -31,7 +30,7 @@ function loadEvents()
     http.onreadystatechange = function() {
         if(http.readyState == 4 && http.status == 200) {
             response_string = http.responseText;
-            //getMyLocation(response_string);
+            getMyLocation(response_string);
             sendEvents(response_string);
         }
     }
@@ -41,18 +40,18 @@ function loadEvents()
 function sendEvents (results) 
 {
 	var html = "";
-	console.log(results);
+
 
 	document.getElementById("list_of_event").innerHTML = "<p>Hey i made it here</p>";
 }
 
 
-function getMyLocation() {
+function getMyLocation(results) {
 	if (navigator.geolocation) { // the navigator.geolocation object is supported on your browser
 		navigator.geolocation.getCurrentPosition(function(position) {
 			myLat = position.coords.latitude;
 			myLng = position.coords.longitude;
-			renderMap();
+			renderMap(results);
 		});
 	}
 	else {
@@ -60,7 +59,7 @@ function getMyLocation() {
 	}
 }
 
-function renderMap()
+function renderMap(results)
 {
 	me = new google.maps.LatLng(myLat, myLng);
 	
