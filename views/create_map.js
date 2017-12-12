@@ -131,7 +131,7 @@ function format_events (all_events)
     }
  
  
-    getElementById('list_of_events').innerHTML = toprint;
+    document.getElementById('list_of_events').innerHTML = toprint;
  
 }
  
