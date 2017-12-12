@@ -65,7 +65,7 @@ app.post('/add-event', function(req, res) {
         twilio.messages.create({
              to: number,
              from: '+14158533420',
-             body: 'Your event has been made! Stay up to date with feedme mobile. Use feedme with your friends! Contact us at 415-853-3420. Happy eating!'
+             body: 'Your event has been made! Use feedme with your friends! Contact us at 415-853-3420. Happy eating! When your event is live, see it at: https://frozen-depths-55905.herokuapp.com/map.html'
          })
          .then((message) => console.log("Message Sent"));
 
