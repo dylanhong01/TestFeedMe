@@ -71,8 +71,9 @@ function placeEvents()
 		if (sendIt.readyState == 4 && sendIt.status == 200)
 		{
 			rawData = sendIt.responseText;
-			format_events(rawData);
 			events = JSON.parse(rawData);
+			format_events(events);
+
 			for (count = 0; count < events.length; count++)
 			{
 				var food = events[count].food;
