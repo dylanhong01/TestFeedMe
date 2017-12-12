@@ -218,7 +218,7 @@ app.get('/prints', function(request, response){
 
   var now = new Date();
   var eventList = [];
-  currTime = now.getHours()-7 + ':' + now.getMinutes();
+  currTime = now.getHours()-3 + ':' + now.getMinutes();
 
   console.log(currTime);
 
