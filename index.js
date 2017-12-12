@@ -215,9 +215,9 @@ app.post('/print', function(request, response){
       if (!err) {
         for (var count = 0; count < results.length; count++){
 
-          if (results[count].timeStart <= currTime && results[count].timeEnd >= currTime){
+          //if (results[count].timeStart <= currTime && results[count].timeEnd >= currTime){
             eventList.push(results[count]);
-          }
+          //}
         }
         response.send(eventList);
       }
@@ -238,9 +238,9 @@ app.get('/prints', function(request, response){
       if (!err) {
         for (var count = 0; count < results.length; count++){
 
-          if (results[count].timeStart <= currTime && results[count].timeEnd >= currTime){
+          //if (results[count].timeStart <= currTime && results[count].timeEnd >= currTime){
             eventList.push(results[count]);
-          }
+          //}
         }
         response.send(eventList);
       }
