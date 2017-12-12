@@ -199,7 +199,7 @@ function format_events (all_events) {
         printString += h[i];
         console.log(h[i]);
     }
-    document.getElementById('list_of_event').innterHTML = printString;
+    document.getElementById('list_of_event').innerHTML = printString;
 
  
 }
