@@ -23,6 +23,7 @@ var db = MongoClient.connect(mongoUri, function(error, databaseConnection) {
 	db = databaseConnection;
 });
 
+//Test
 
 app.use(express.static(__dirname + '/public'));
 
