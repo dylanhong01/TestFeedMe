@@ -140,7 +140,7 @@ function format_events (all_events)
  
 }
 */
-
+/*
 function format_events (all_events) {
     var h = new Object();
     h["TischLibrary"] = '<div id="content">';
@@ -202,9 +202,9 @@ function format_events (all_events) {
     document.getElementById('list_of_event').innerHTML = printString;
 
  
-}
+}*/
 
- /*
+ 
 function print_grouping (groupings) {
     var infoContent = "";
     for (i in groupings) {
@@ -227,7 +227,7 @@ function print_grouping (groupings) {
     //TODO send this
     return infoContent;
 }
-*/
+
 
 function formatTime(timeIn){
   var tmpArr = timeIn.split(':'), timeOut;
