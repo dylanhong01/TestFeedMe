@@ -247,7 +247,7 @@ var building_locations =
 	"TischLibrary" : {"lat":42.406204, "lng":-71.118877},
 	"Halligan" : {"lat":42.408215, "lng":-71.116240},
 	"574" : {"lat":42.403515, "lng":-71.113987},
-  "CampusCenter" : {"lat":42.4075, "lng":-71.1190},
+  "CampusCenter" : {"lat":42.405700, "lng":-71.119791},
   "Carm" : {"lat":42.409489, "lng":-71.122417},
   "PrezLawn" : {"lat":42.407049, "lng":-71.120636},
   "Dewick" : {"lat":42.405327, "lng":-71.121081},
