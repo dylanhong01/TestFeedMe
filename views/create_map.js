@@ -108,7 +108,6 @@ function placeEvents()
 	}
 }
 
-/*
 
 function format_events (all_events)
 {
@@ -160,7 +159,6 @@ function print_grouping (groupings) {
     return infoContent;
 }
 
-*/
 
 var building_locations =
 {

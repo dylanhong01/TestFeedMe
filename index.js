@@ -107,10 +107,7 @@ app.get('/print-events', function(request, response){
       }
     });
   });
-
-
-
-
+  });
 
 
 /*
