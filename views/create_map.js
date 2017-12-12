@@ -56,6 +56,8 @@ function renderMap()
 
 }
 
+
+
 function placeEvents()
 {
 	var sendIt = new XMLHttpRequest();
@@ -109,6 +111,7 @@ function placeEvents()
 	}
 }
 
+/*
 
 function format_events (all_events)
 {
@@ -136,7 +139,69 @@ function format_events (all_events)
     document.getElementById('list_of_event').innerHTML = toprint;
  
 }
+*/
+
+function format_events (all_events) {
+    var h = new Object();
+    h["TischLibrary"] = '<div id="content">';
+    h["Halligan"] = '<div id="content">';
+    h["574"]= '<div id="content">';
+    h["CampusCenter"]= '<div id="content">';
+    h["Carm"]= '<div id="content">';
+    h["PrezLawns"]= '<div id="content">';
+    h["Dewick"]= '<div id="content">';
+    h["TischGym"]= '<div id="content">';
+    h["SEC"]= '<div id="content">';
+    h["SoGo"]= '<div id="content">';
  
+    var curString = "";
+ 
+    for (i = 0; i < all_events.length; i++) {
+       
+        var food = events[i].food;
+        var location = events[i].location;  
+        var room = events[i].room;
+        var timeStart = events[i].timeStart;
+        var timeEnd = events[i].timeEnd;
+        var xtrainfo = events[i].extraInfo;
+ 
+ 
+        curString = h[all_events[i]];
+        if (curString == '<div id="content">') {
+            curString = '<div id="siteNotice"></div><h1 id="firstHeading" class="firstHeading">'
+                            + location + '</h1></div>';
+            curString += '<div id="bodyContent"><p>' + "Food: " + food + '</p>';
+            curString += '<p>' + "Room: " + room + '</p>';
+            curString += '<p>' + "Start Time: " + timeStart + '</p>';
+            curString += '<p>' + "End Time: " + timeEnd + '</p>';
+            curString += '<p>' + "Additional Information: " + xtrainfo + '</p>';
+            h[all_events[i]] = curString            
+        } else {
+            curString += '<div id="bodyContent"><p>' + "Food: " + food + '</p>';
+            curString += '<p>' + "Room: " + room + '</p>';
+            curString += '<p>' + "Start Time: " + timeStart + '</p>';
+            curString += '<p>' + "End Time: " + timeEnd + '</p>';
+            curString += '<p>' + "Additional Information: " + xtrainfo + '</p>';
+        }
+    }
+ 
+    for (i in h) {
+        if (h[i] == '<div id="content">') {
+            h[i] = "";
+        } else {
+            h[i] += '</div>'
+        }
+    }
+
+    var printString = "";
+    for (i in h) {
+        printString += h[i];
+    }
+    document.getElementById('list_of_event').innterHTML = printString;
+ 
+}
+
+ /*
 function print_grouping (groupings) {
     var infoContent = "";
     for (i in groupings) {
@@ -159,6 +224,7 @@ function print_grouping (groupings) {
     //TODO send this
     return infoContent;
 }
+*/
 
 function formatTime(timeIn){
   var tmpArr = timeIn.split(':'), timeOut;
