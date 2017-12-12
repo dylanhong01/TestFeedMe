@@ -72,7 +72,7 @@ function placeEvents()
 		{
 			rawData = sendIt.responseText;
 			events = JSON.parse(rawData);
-			//format_events(events);
+			format_events(events);
 
 			for (count = 0; count < events.length; count++)
 			{
