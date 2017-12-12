@@ -219,7 +219,7 @@ app.get('/prints', function(request, response){
 
   var now = new Date();
   var eventList = [];
-  currTime = now.getHours() + ':' + now.getMinutes();
+  currTime = now.getHours()-5 + ':' + now.getMinutes();
 
   console.log(currTime);
 
@@ -228,9 +228,9 @@ app.get('/prints', function(request, response){
       if (!err) {
         for (var count = 0; count < results.length; count++){
 
-          //if (results[count].timeStart <= currTime && results[count].timeEnd >= currTime){
+          if (results[count].timeStart <= currTime && results[count].timeEnd >= currTime){
             eventList.push(results[count]);
-          //}
+          }
         }
         response.send(eventList);
       }
