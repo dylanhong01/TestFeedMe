@@ -158,15 +158,15 @@ function format_events (all_events) {
  console.log("here");
     for (i = 0; i < all_events.length; i++) {
        
-        var food = events[i].food;
-        var location = events[i].location;  
-        var room = events[i].room;
-        var timeStart = events[i].timeStart;
-        var timeEnd = events[i].timeEnd;
-        var xtrainfo = events[i].extraInfo;
+        var food = all_events[i].food;
+        var location = all_events[i].location;  
+        var room = all_events[i].room;
+        var timeStart = all_events[i].timeStart;
+        var timeEnd = all_events[i].timeEnd;
+        var xtrainfo = all_events[i].extraInfo;
  
  
-        curString = h[all_events[i].location];
+        curString = h["" + all_events[i].location];
         console.log(curString);
         if (curString == '<div id="content">') {
             curString = '<div id="siteNotice"></div><h1 id="firstHeading" class="firstHeading">'
