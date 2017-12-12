@@ -175,7 +175,8 @@ function format_events (all_events) {
             curString += '<p>' + "Start Time: " + timeStart + '</p>';
             curString += '<p>' + "End Time: " + timeEnd + '</p>';
             curString += '<p>' + "Additional Information: " + xtrainfo + '</p>';
-            h[all_events[i]] = curString            
+            h[all_events[i]] = curString   
+            console.log("in if true");         
         } else {
             curString += '<div id="bodyContent"><p>' + "Food: " + food + '</p>';
             curString += '<p>' + "Room: " + room + '</p>';
@@ -189,6 +190,7 @@ function format_events (all_events) {
         if (h[i] == '<div id="content">') {
             h[i] = "";
         } else {
+        	console.log ("else");
             h[i] += '</div>'
         }
     }
@@ -198,6 +200,7 @@ function format_events (all_events) {
         printString += h[i];
     }
     document.getElementById('list_of_event').innterHTML = printString;
+
  
 }
 
