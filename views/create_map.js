@@ -167,6 +167,7 @@ function format_events (all_events) {
  
  
         curString = h[all_events[i]];
+        console.log(curString);
         if (curString == '<div id="content">') {
             curString = '<div id="siteNotice"></div><h1 id="firstHeading" class="firstHeading">'
                             + location + '</h1></div>';
