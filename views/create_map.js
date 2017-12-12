@@ -87,8 +87,8 @@ function placeEvents()
 									+ food + '</h1></div>';
 				infoContent += '<div id="bodyContent"><p>' + "Location: " + location + '</p>';
 				infoContent += '<p>' + "Room: " + room + '</p>';
-				infoContent += '<p>' + "Start Time: " + timeStart + '</p>';
-				infoContent += '<p>' + "End Time: " + timeEnd + '</p>';
+				infoContent += '<p>' + "Start Time: " + printTime(timeStart) + '</p>';
+				infoContent += '<p>' + "End Time: " + printTime(timeEnd) + '</p>';
 				infoContent += '<p>' + "Additional Information: " + xtrainfo + '</p></div>';
 				var newInfoWindow = new google.maps.InfoWindow ({
 					content:infoContent
@@ -151,13 +151,31 @@ function print_grouping (groupings) {
                         + location + '</h1></div>';
         infoContent += '<div id="bodyContent"><p>' + "Food: " + food + '</p>';
         infoContent += '<p>' + "Room: " + room + '</p>';
-        infoContent += '<p>' + "Start Time: " + timeStart + '</p>';
-        infoContent += '<p>' + "End Time: " + timeEnd + '</p>';
+        infoContent += '<p>' + "Start Time: " + formatTime(timeStart) + '</p>';
+        infoContent += '<p>' + "End Time: " + formatTime(timeEnd) + '</p>';
         infoContent += '<p>' + "Additional Information: " + xtrainfo + '</p></div>'
     }
  
     //TODO send this
     return infoContent;
+}
+
+function formatTime(timeIn){
+  var tmpArr = timeIn.split(':'), timeOut;
+  if(+tmpArr[0] == 12) {
+    timeOut = tmpArr[0] + ':' + tmpArr[1] + ' PM';
+  } else {
+    if(+tmpArr[0] == 00) {
+      timeOut = '12:' + tmpArr[1] + ' AM';
+    } else {
+      if(+tmpArr[0] > 12) {
+      timeOut = (+tmpArr[0]-12) + ':' + tmpArr[1] + ' PM';
+    } else {
+      timeOut = (+tmpArr[0]) + ':' + tmpArr[1] + ' AM';
+    }
+    }
+    }
+  return timeOut;
 }
 
 
