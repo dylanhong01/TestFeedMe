@@ -72,7 +72,7 @@ function placeEvents()
 		{
 			rawData = sendIt.responseText;
 			events = JSON.parse(rawData);
-			format_events(events);
+			//format_events(events);
 
 			for (count = 0; count < events.length; count++)
 			{
@@ -108,6 +108,7 @@ function placeEvents()
 	}
 }
 
+/*
 
 function format_events (all_events)
 {
@@ -159,7 +160,7 @@ function print_grouping (groupings) {
     return infoContent;
 }
 
-
+*/
 
 var building_locations =
 {
