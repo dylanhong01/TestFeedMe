@@ -155,7 +155,6 @@ function format_events (all_events) {
     h["SoGo"]= '<div id="content">';
  
     var curString = "";
- console.log("here");
     for (i = 0; i < all_events.length; i++) {
        
         var food = all_events[i].food;
@@ -176,8 +175,7 @@ function format_events (all_events) {
             curString += '<p>' + "Start Time: " + timeStart + '</p>';
             curString += '<p>' + "End Time: " + timeEnd + '</p>';
             curString += '<p>' + "Additional Information: " + xtrainfo + '</p>';
-            h[all_events[i]] = curString   
-            console.log("in if true");         
+            h[all_events[i]] = curString           
         } else {
             curString += '<div id="bodyContent"><p>' + "Food: " + food + '</p>';
             curString += '<p>' + "Room: " + room + '</p>';
@@ -199,6 +197,7 @@ function format_events (all_events) {
     var printString = "";
     for (i in h) {
         printString += h[i];
+        console.log(h[i]);
     }
     document.getElementById('list_of_event').innterHTML = printString;
 
