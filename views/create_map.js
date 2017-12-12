@@ -87,8 +87,8 @@ function placeEvents()
 									+ food + '</h1></div>';
 				infoContent += '<div id="bodyContent"><p>' + "Location: " + location + '</p>';
 				infoContent += '<p>' + "Room: " + room + '</p>';
-				infoContent += '<p>' + "Start Time: " + printTime(timeStart) + '</p>';
-				infoContent += '<p>' + "End Time: " + printTime(timeEnd) + '</p>';
+				infoContent += '<p>' + "Start Time: " + formatTime(timeStart) + '</p>';
+				infoContent += '<p>' + "End Time: " + formattTime(timeEnd) + '</p>';
 				infoContent += '<p>' + "Additional Information: " + xtrainfo + '</p></div>';
 				var newInfoWindow = new google.maps.InfoWindow ({
 					content:infoContent
