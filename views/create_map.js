@@ -111,7 +111,7 @@ function placeEvents()
 	}
 }
 
-/*
+
 
 function format_events (all_events)
 {
@@ -139,7 +139,7 @@ function format_events (all_events)
     document.getElementById('list_of_event').innerHTML = toprint;
  
 }
-*/
+
 /*
 function format_events (all_events) {
     var h = new Object();
