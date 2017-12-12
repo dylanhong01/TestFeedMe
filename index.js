@@ -195,7 +195,7 @@ app.post('/print', function(request, response){
 
   var now = new Date();
   var eventList = [];
-  currTime = now.getHours()-5 + ':' + now.getMinutes();
+  currTime = now.getHours() + ':' + now.getMinutes();
 
   console.log(currTime);
 
@@ -218,7 +218,7 @@ app.get('/prints', function(request, response){
 
   var now = new Date();
   var eventList = [];
-  currTime = now.getHours()-5 + ':' + now.getMinutes();
+  currTime = now.getHours() + ':' + now.getMinutes();
 
   console.log(currTime);
 
