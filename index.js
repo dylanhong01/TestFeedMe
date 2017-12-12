@@ -60,6 +60,16 @@ app.post('/add-event', function(req, res) {
         extraInfo = req.body.extraInfo;
 
 
+       var cellnum = req.body.cellnum;
+       var number = '+1' + cellnum.toString();
+        twilio.messages.create({
+             to: number,
+             from: '+14158533420',
+             body: 'Your event has been made! Stay up to date with feedme mobile. Use feedme with your friends! Contact us at 415-853-3420. Happy eating!'
+         })
+         .then((message) => console.log("Message Sent"));
+
+
         //function infoValid()
 
     var eventObj = {"food": food, "location": location, "room": room,
