@@ -11,6 +11,11 @@ var map;
 var marker;
 var infowindow = new google.maps.InfoWindow();
 var rectangle = new google.maps.Rectangle();
+var lookup = [];
+lookup.push("hello");
+var markers = [];
+markers.push("hello");
+
 
 
 function init()
@@ -56,8 +61,79 @@ function renderMap()
 
 }
 
+function placeEvents(){
+    var sendIt = new XMLHttpRequest();
+    var url = "https://frozen-depths-55905.herokuapp.com/print";
+    sendIt.open("POST", url, true);
 
+    sendIt.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
+    sendIt.send();
+    sendIt.onreadystatechange = function()
+    {
+        if (sendIt.readyState == 4 && sendIt.status == 200)
+        {
+            rawData = sendIt.responseText;
+            events = JSON.parse(rawData);
+            eventss = JSON.parse(rawData);
+            format_events(eventss);
+            for (count = 0; count < events.length; count++){
+                var food = events[count].food;
+                var location = events[count].location;
+                if (location == null){
+                    console.log("not added");
+                    continue;
+                }
+                var room = events[count].room;
+                var timeStart = events[count].timeStart;
+                var timeEnd = events[count].timeEnd;
+                var xtrainfo = events[count].extraInfo;
+                var position = isLocationFree(location);
+                var infoContent = "";
+                if (position == 0){
+                    infoContent += '<div id="content"><div id="siteNotice"></div><h1 id="firstHeading" class="firstHeading">'
+                        + location + '</h1></div>';
+                }
+                else{
+                    infoContent += '<h1 id="firstHeading" class="firstHeading">' + "Also Here: " + '</h1>';
+                }
+                infoContent += '<p>' + "Food: " + food + '</p>';
+                infoContent += '<p>' + "Room: " + room + '</p>';
+                infoContent += '<p>' + "Start Time: " + formatTime(timeStart) + '</p>';
+                infoContent += '<p>' + "End Time: " + formatTime(timeEnd) + '</p>';
+                infoContent += '<p>' + "Additional Information: " + xtrainfo + '</p>';
+                if(position == 0){
+                    markers.push(infoContent);
+                }
+                else {
+                    var oldWindow = markers[position];
+                    oldWindow += infoContent;
+                    markers[position] = oldWindow;
+                }
+            }
+            for (count = 1; count < lookup.length; count++){
+                    var infoText = markers[count] 
+                    infoText += '</div>';
+                    var newInfoWindow = new google.maps.InfoWindow ({
+                        content: infoText
+                    });
+                    var newMarker = new google.maps.Marker({
+                        position: geolocation_of_building(lookup[count]),
+                        icon: 'FMsmall.png',
+                        map: map,
+                        title: location,
+                        infowindow: newInfoWindow
+                    });
+                    google.maps.event.addListener(newMarker, 'click', function() {
+                        this.infowindow.open(map, this);
+                    }); 
+                newMarker.setMap(map);
+            }
+        }
+    }
+}
+
+/*
 function placeEvents()
 {
 	var sendIt = new XMLHttpRequest();
@@ -110,7 +186,7 @@ function placeEvents()
 		}
 	}
 }
-
+*/
 
 
 function format_events (all_events)
@@ -268,6 +344,18 @@ function geolocation_of_building (building)
 {
 	var latLng = building_locations[building];
 	return latLng;
+}
+
+
+function isLocationFree(search) {
+    var i;
+    for (i = 0; i < lookup.length; i++){
+        if (lookup[i] == search){
+            return i;
+        }
+    }
+    lookup.push(search);
+    return 0;
 }
 
 
