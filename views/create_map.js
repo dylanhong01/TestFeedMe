@@ -155,7 +155,7 @@ function format_events (all_events) {
     h["SoGo"]= '<div id="content">';
  
     var curString = "";
- 
+ console.log("here");
     for (i = 0; i < all_events.length; i++) {
        
         var food = events[i].food;
