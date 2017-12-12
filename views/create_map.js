@@ -168,7 +168,7 @@ function format_events (all_events) {
         curString = h["" + all_events[i].location];
         console.log(curString);
         if (curString == '<div id="content">') {
-            curString = '<div id="siteNotice"></div><h1 id="firstHeading" class="firstHeading">'
+            curString += '<div id="siteNotice"></div><h1 id="firstHeading" class="firstHeading">'
                             + location + '</h1></div>';
             curString += '<div id="bodyContent"><p>' + "Food: " + food + '</p>';
             curString += '<p>' + "Room: " + room + '</p>';
