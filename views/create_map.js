@@ -138,12 +138,12 @@ function format_events (all_events)
 function print_grouping (groupings) {
     var infoContent = "";
     for (i in groupings) {
-        var food = groupings[count].food;
-        var location = groupings[count].location;  
-        var room = groupings[count].room;
-        var timeStart = groupings[count].timeStart;
-        var timeEnd = groupings[count].timeEnd;
-        var xtrainfo = groupings[count].extraInfo;
+        var food = groupings[i].food;
+        var location = groupings[i].location;  
+        var room = groupings[i].room;
+        var timeStart = groupings[i].timeStart;
+        var timeEnd = groupings[i].timeEnd;
+        var xtrainfo = groupings[i].extraInfo;
  
         infoContent = '<div id="content"><div id="siteNotice"></div><h1 id="firstHeading" class="firstHeading">'
                         + location + '</h1></div>';
